@@ -181,7 +181,6 @@ func (cs ClientState) Initialize(ctx sdk.Context, cdc codec.BinaryCodec, clientS
 // that a set of shares exist in a set of rows and a Merkle proof that those rows exist
 // in a Merkle tree with a given data root.
 func (cs *ClientState) VerifyMembership(ctx sdk.Context, clientStore storetypes.KVStore, cdc codec.BinaryCodec, height Height, proof *ShareProof) error {
-	fmt.Println("VerifyMembership - celestia da light client")
 	if cs.LatestHeight.LT(height) {
 		return fmt.Errorf("invalid height, client state height < proof height (%d < %d), please ensure the client has been updated", cs.LatestHeight, height)
 	}
