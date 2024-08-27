@@ -1,0 +1,22 @@
+version: v1
+managed:
+  enabled: true
+  go_package_prefix:
+    default: github.com/rollchains/tiablob
+    except:
+      - buf.build/googleapis/googleapis
+      - buf.build/cosmos/gogo-proto
+      - buf.build/cosmos/cosmos-proto
+      - buf.build/cosmos/cosmos-sdk
+    override:
+      buf.build/tendermint/tendermint: cosmossdk.io/api
+plugins:
+  - name: go-pulsar
+    out: ..
+    opt: paths=source_relative,Mcosmos/app/v1alpha1/module.proto=cosmossdk.io/api/cosmos/app/v1alpha1,Mrollchains/tiablob/lightclients/celestia/v1/celestia.proto=github.com/rollchains/tiablob/api/lightclients/celestia/v1
+  - name: go-grpc
+    out: ..
+    opt: paths=source_relative,Mcosmos/app/v1alpha1/module.proto=cosmossdk.io/api/cosmos/app/v1alpha1,Mrollchains/tiablob/lightclients/celestia/v1/celestia.proto=github.com/rollchains/tiablob/api/lightclients/celestia/v1
+  - name: go-cosmos-orm
+    out: ..
+    opt: paths=source_relative,Mcosmos/app/v1alpha1/module.proto=cosmossdk.io/api/cosmos/app/v1alpha1,Mrollchains/tiablob/lightclients/celestia/v1/celestia.proto=github.com/rollchains/tiablob/api/lightclients/celestia/v1
