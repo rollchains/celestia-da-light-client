@@ -1,4 +1,4 @@
-package celestia
+package celestia_da_light_client
 
 import (
 	"fmt"
@@ -126,15 +126,15 @@ func MustParseHeight(heightStr string) Height {
 func ParseHeight(heightStr string) (Height, error) {
 	splitStr := strings.Split(heightStr, "-")
 	if len(splitStr) != 2 {
-		return Height{}, fmt.Errorf("Invalid height, expected height string format: {revision}-{height}. Got %s", heightStr)
+		return Height{}, fmt.Errorf("invalid height, expected height string format: {revision}-{height}. Got %s", heightStr)
 	}
 	revisionNumber, err := strconv.ParseUint(splitStr[0], 10, 64)
 	if err != nil {
-		return Height{}, fmt.Errorf("Invalid height, invalid revision number. parse err: %s", err)
+		return Height{}, fmt.Errorf("invalid height, invalid revision number. parse err: %s", err)
 	}
 	revisionHeight, err := strconv.ParseUint(splitStr[1], 10, 64)
 	if err != nil {
-		return Height{}, fmt.Errorf("Invalid height, invalid revision height. parse err: %s", err)
+		return Height{}, fmt.Errorf("invalid height, invalid revision height. parse err: %s", err)
 	}
 	return NewHeight(revisionNumber, revisionHeight), nil
 }
@@ -143,7 +143,7 @@ func ParseHeight(heightStr string) (Height, error) {
 // in the chainID with the given revision number.
 func SetRevisionNumber(chainID string, revision uint64) (string, error) {
 	if !IsRevisionFormat(chainID) {
-		return "", fmt.Errorf("Invalid chain id, chainID is not in revision format: %s", chainID)
+		return "", fmt.Errorf("invalid chain id, chainID is not in revision format: %s", chainID)
 	}
 
 	splitStr := strings.Split(chainID, "-")

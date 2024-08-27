@@ -1,4 +1,4 @@
-package celestia
+package celestia_da_light_client
 
 import (
 	tmtypes "github.com/tendermint/tendermint/types"

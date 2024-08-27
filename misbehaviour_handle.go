@@ -1,4 +1,4 @@
-package celestia
+package celestia_da_light_client
 
 import (
 	"bytes"
@@ -27,15 +27,13 @@ func (ClientState) CheckForMisbehaviour(ctx sdk.Context, cdc codec.BinaryCodec, 
 		// If the consensus state exists, and it matches the header then we return early
 		// since header has already been submitted in a previous UpdateClient.
 		if existingConsState, found := GetConsensusState(clientStore, cdc, tmHeader.GetHeight()); found {
-			// This header has already been submitted and the necessary state is already stored
-			// in client store, thus we can return early without further validation.
-			if reflect.DeepEqual(existingConsState, tmHeader.ConsensusState()) { //nolint:gosimple
-				return false
-			}
-
-			// A consensus state already exists for this height, but it does not match the provided header.
+			// Return true if a consensus state already exists for this height, but it does not match the provided header.
 			// The assumption is that Header has already been validated. Thus we can return true as misbehaviour is present
-			return true
+			
+			// Returns false if this header has already been submitted and the necessary state is already stored
+			// in client store, thus we can return early without further validation.
+
+			return !reflect.DeepEqual(existingConsState, tmHeader.ConsensusState())
 		}
 
 		// Check that consensus state timestamps are monotonic

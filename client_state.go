@@ -1,4 +1,4 @@
-package celestia
+package celestia_da_light_client
 
 import (
 	"fmt"
@@ -54,7 +54,7 @@ func (ClientState) GetTimestampAtHeight(
 	// get consensus state at height from clientStore to check for expiry
 	consState, found := GetConsensusState(clientStore, cdc, height)
 	if !found {
-		return 0, fmt.Errorf("Consensus state not found, height: %s", height)
+		return 0, fmt.Errorf("consensus state not found, height: %s", height)
 	}
 	return consState.GetTimestamp(), nil
 }
@@ -183,7 +183,7 @@ func (cs ClientState) Initialize(ctx sdk.Context, cdc codec.BinaryCodec, clientS
 func (cs *ClientState) VerifyMembership(ctx sdk.Context, clientStore storetypes.KVStore, cdc codec.BinaryCodec, height Height, proof *ShareProof) error {
 	fmt.Println("VerifyMembership - celestia da light client")
 	if cs.LatestHeight.LT(height) {
-		return fmt.Errorf("Invalid height, client state height < proof height (%d < %d), please ensure the client has been updated", cs.LatestHeight, height)
+		return fmt.Errorf("invalid height, client state height < proof height (%d < %d), please ensure the client has been updated", cs.LatestHeight, height)
 	}
 
 	shareProof, err := ShareProofFromProto(proof)

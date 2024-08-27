@@ -1,4 +1,4 @@
-package celestia
+package celestia_da_light_client
 
 /*
 celestia light client is based on the ibc-go 07-tendermint and 07-celestia light client.

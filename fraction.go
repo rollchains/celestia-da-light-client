@@ -1,4 +1,4 @@
-package celestia
+package celestia_da_light_client
 
 import (
 	cmtmath "github.com/cometbft/cometbft/libs/math"

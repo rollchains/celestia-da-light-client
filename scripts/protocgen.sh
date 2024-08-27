@@ -11,10 +11,10 @@ cd proto
 proto_dirs=$(find . -path -prune -o -name '*.proto' -print0 | xargs -0 -n1 dirname | sort | uniq)
 for dir in $proto_dirs; do
   for file in $(find "${dir}" -maxdepth 1 -name '*.proto'); do
-    # this regex checks if a proto file has its go_package set to github.com/rollchains/tiablob/...
+    # this regex checks if a proto file has its go_package set to github.com/rollchains/celestia-da-light-client/...
     # gogo proto files SHOULD ONLY be generated if this is false
     # we don't want gogo proto to run for proto files which are natively built for google.golang.org/protobuf
-    if grep -q "option go_package" "$file" && grep -H -o -c 'option go_package.*github.com/rollchains/tiablob/api' "$file" | grep -q ':0$'; then
+    if grep -q "option go_package" "$file" && grep -H -o -c 'option go_package.*github.com/rollchains/celestia-da-light-client/api' "$file" | grep -q ':0$'; then
       buf generate --template buf.gen.gogo.yaml $file
     fi
   done
@@ -25,7 +25,7 @@ buf generate --template buf.gen.pulsar.yaml
 
 cd ..
 
-cp -r github.com/rollchains/tiablob/* ./
+cp -r github.com/rollchains/celestia-da-light-client/* ./
 rm -rf api && mkdir api
-mv rollchains/tiablob/* ./api
+mv rollchains/celestia_da_light_client/* ./api
 rm -rf github.com rollchains

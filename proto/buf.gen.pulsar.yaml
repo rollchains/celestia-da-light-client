@@ -2,7 +2,7 @@ version: v1
 managed:
   enabled: true
   go_package_prefix:
-    default: github.com/rollchains/tiablob
+    default: github.com/rollchains/celestia-da-light-client
     except:
       - buf.build/googleapis/googleapis
       - buf.build/cosmos/gogo-proto
@@ -13,10 +13,10 @@ managed:
 plugins:
   - name: go-pulsar
     out: ..
-    opt: paths=source_relative,Mcosmos/app/v1alpha1/module.proto=cosmossdk.io/api/cosmos/app/v1alpha1,Mrollchains/tiablob/lightclients/celestia/v1/celestia.proto=github.com/rollchains/tiablob/api/lightclients/celestia/v1
+    opt: paths=source_relative,Mcosmos/app/v1alpha1/module.proto=cosmossdk.io/api/cosmos/app/v1alpha1
   - name: go-grpc
     out: ..
-    opt: paths=source_relative,Mcosmos/app/v1alpha1/module.proto=cosmossdk.io/api/cosmos/app/v1alpha1,Mrollchains/tiablob/lightclients/celestia/v1/celestia.proto=github.com/rollchains/tiablob/api/lightclients/celestia/v1
+    opt: paths=source_relative,Mcosmos/app/v1alpha1/module.proto=cosmossdk.io/api/cosmos/app/v1alpha1
   - name: go-cosmos-orm
     out: ..
-    opt: paths=source_relative,Mcosmos/app/v1alpha1/module.proto=cosmossdk.io/api/cosmos/app/v1alpha1,Mrollchains/tiablob/lightclients/celestia/v1/celestia.proto=github.com/rollchains/tiablob/api/lightclients/celestia/v1
+    opt: paths=source_relative,Mcosmos/app/v1alpha1/module.proto=cosmossdk.io/api/cosmos/app/v1alpha1
